@@ -7,13 +7,13 @@ provider "aws" {
 
 # VPC existente
 data "aws_vpc" "vpc_id" {
-  id = "vpc-098438d41a49e28be" 
+  id = "" 
 }
 
 # Sub-rede existente
 data "aws_subnet" "existing_subnet" {
-  vpc_id = "vpc-098438d41a49e28be" 
-  id     = "subnet-0898c7b4226bee9e3"
+  vpc_id = "" 
+  id     = ""
 }
 
 module "ec2_instance" {
