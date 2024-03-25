@@ -21,3 +21,7 @@ variable "access_key" {
 variable "secret_key" {
   description = "Instance type for EC2 instance"
 }
+
+variable "role_action_aws" {
+  description = "Role to assume in aws"
+}
