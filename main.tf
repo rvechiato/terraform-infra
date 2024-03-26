@@ -1,22 +1,17 @@
-
 provider "aws" {
-  region = "us-east-1"  # Substitua pela região desejada
+  region      = var.region # Substitua pela região desejada
   access_key  =  var.access_key
   secret_key  =  var.secret_key
-
-  assume_role {
-    role_arn = var.role_action_aws
-  }
 }
 
 # VPC existente
-data "aws_vpc" "vpc_id" {
-  id = var.vpc_id
+data "aws_vpc" "my_vpc" { 
+  id = var.my_vpc_id
 }
 
 # Sub-rede existente
-data "aws_subnet" "existing_subnet" {
-  vpc_id = data.aws_vpc.vpc_id.id 
+data "aws_subnet" "my_subnet" {
+  vpc_id = data.aws_vpc.my_vpc.id
   id     = var.subnet
 }
 
@@ -25,5 +20,6 @@ module "ec2_instance" {
 
   ami_id        = var.ami_id
   instance_type = var.instance_type
-  vpc_id        = data.aws_vpc.vpc_id.id
+  subnet        = var.subnet
+  vpc_id        = var.my_vpc_id
 }

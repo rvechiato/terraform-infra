@@ -29,14 +29,17 @@ resource "aws_security_group" "demo-sg-ec2" {
   }
 }
 
+
 resource "aws_instance" "ec2-demo-instance" {
   ami                    = var.ami_id  # Substitua pelo ID da AMI desejada
   
   instance_type          = var.instance_type      # Tipo da instância
   security_groups        = [aws_security_group.demo-sg-ec2.id]  # Referência ao ID do grupo de segurança criado acima
   associate_public_ip_address = true       # Habilitar IP público 
-  user_data               = local.userdata_script  # Usar o script UserData definido no recurso local
-
-  // Adicione outras configurações necessárias para a instância EC2
+  user_data              = local.userdata_script  # Usar o script UserData definido no recurso local
+  subnet_id              = var.subnet  
+  availability_zone      = var.availability_zone 
+  
+  depends_on = [aws_security_group.demo-sg-ec2]
 }
 

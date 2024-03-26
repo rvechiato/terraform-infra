@@ -23,7 +23,7 @@ jobs:
         run: terraform init
 
       - name: Terraform plan
-        run: terraform plan -var="access_key=$AWS_ACCESS_KEY_ID" -var="secret_key=$AWS_SECRET_ACCESS_KEY" -var="vpc_id=$AWS_VPC_ID" -var="subnet=$AWS_SUBNET" -var="role_action_aws=$ARN_ROLE" -var-file=./environments/hom/stage.tfvars
+        run: terraform plan -var="access_key=$AWS_ACCESS_KEY_ID" -var="secret_key=$AWS_SECRET_ACCESS_KEY" -var="vpc_id=$AWS_VPC_ID" -var="subnet=$AWS_SUBNET" -var-file=./environments/hom/stage.tfvars
 
       - name: Terraform Apply
         run: terraform apply -auto-approve

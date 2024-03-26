@@ -6,7 +6,14 @@ variable "instance_type" {
   description = "Instance type for EC2 instance"
 }
 
-variable "vpc_id" {
+
+variable "region" {
+  description = "Region "
+  default     =  "us-east-1"
+}
+
+
+variable "my_vpc_id" {
   description = "Instance type for EC2 instance"
 }
 
@@ -22,6 +29,3 @@ variable "secret_key" {
   description = "Instance type for EC2 instance"
 }
 
-variable "role_action_aws" {
-  description = "Role to assume in aws"
-}
