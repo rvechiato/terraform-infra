@@ -27,6 +27,10 @@ resource "aws_security_group" "demo-sg-ec2" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+    Name = "my-demo-sg-ec2"
+  }
 }
 
 
@@ -41,5 +45,9 @@ resource "aws_instance" "ec2-demo-instance" {
   availability_zone      = var.availability_zone 
   
   depends_on = [aws_security_group.demo-sg-ec2]
+
+  tags = {
+    Name = "my-demo-ec2-instances"
+  }
 }
 
