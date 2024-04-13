@@ -4,20 +4,12 @@ resource "aws_security_group" "demo-sg-ec2" {
 
   vpc_id = var.vpc_id  # Substitua pelo ID da VPC onde o grupo de segurança será criado
 
-  // Regra de entrada permitindo acesso HTTP na porta 80
+  // Regra de entrada permitindo tráfego do ALB na porta 80
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Permitindo acesso de qualquer lugar
-  }
-
-  // Regra de entrada permitindo acesso SSH na porta 22
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Permitindo acesso de qualquer lugar
+    from_port          = 80
+    to_port            = 80
+    protocol           = "tcp"
+    security_groups    = [var.alb_security_group_id]
   }
 
   // Regra de saída permitindo todo tráfego

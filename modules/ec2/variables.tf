@@ -27,3 +27,9 @@ variable "instance_count" {
   type        = number
   default = 1
 }
+
+variable "alb_security_group_id" {
+  description = "Alb Security group"  
+}
+
+
